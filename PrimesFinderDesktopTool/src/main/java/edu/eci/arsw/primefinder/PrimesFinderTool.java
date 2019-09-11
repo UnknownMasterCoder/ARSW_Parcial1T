@@ -16,52 +16,51 @@ import org.apache.http.impl.client.HttpClientBuilder;
 public class PrimesFinderTool {
 
 	public static void main(String[] args) throws InterruptedException {
-		
-            /*
-            int maxPrim = 1000;
+		            
+            /*   //PUNTO 1 
+            //(Descomentar esto y comentar los demás para probar solo esta parte)
             
-            PrimesResultSet prs = new PrimesResultSet("john");
+            //ParallelCalculation me calcula todos los numeros primos
+            //Tomando como parametro (el # de primos a calcular y el # de hilos)
+            //En este caso 4 hilos, pero tambien se puede hacer con diferente # de hilos
             
-            PrimeFinder.findPrimes(new BigInteger("1"), new BigInteger("10000"), prs);
-            
-            System.out.println("Prime numbers found:");
-            
-            System.out.println(prs.getPrimes());
+            //System.out.println("Punto 1:\n");
+            //ParallelCalculation punto1 = new ParallelCalculation(10000,4);
+            //punto1.calculate();
             */
             
             
-            System.out.println("Case 1:\n");
-            //ParallelCalculation me calcula todos los numeros primos
-            //Tomando como parametro (el # de primos a calcular y el # de hilos)
-            //En este caso 4 hlos, pero tambien se puede hacer con diferente # de hilos
-            ParallelCalculation T0 = new ParallelCalculation(10000,4);
-            T0.calculate();
             
             
-            
-            
-            
-            
-            
-            /*while(task_not_finished){
+            //   PUNTO 2
+            //(Descomentar esto y comentar los demás para probar solo esta parte)
+
+            System.out.println("Punto 1:\n");
+            ParallelCalculation punto1 = new ParallelCalculation(1000000,10);
+            //Mientras que haya movimiento del mouse, Mientras la tarea no esté terminada
+            //while(MouseMovementMonitor.getInstance().getTimeSinceLastMouseMovement() > 10000){
+            while(!Thread.interrupted()){
                 try {
                     //check every 10ms if the idle status (10 seconds without mouse
                     //activity) was reached. 
                     Thread.sleep(10);
-                    if (MouseMovementMonitor.getInstance().getTimeSinceLastMouseMovement()>10000){
-                        System.out.println("Idle CPU ");
+                    if (MouseMovementMonitor.getInstance().getTimeSinceLastMouseMovement() > 10000){
+                        System.out.println("\nIDLE CPU\n");                        
+                        punto1.calculate();
                     }
                     else{
-                        System.out.println("User working again!");
+                        System.out.println("\nUser working again!\n");
+                        //punto1.wait();
+                        Thread.holdsLock(punto1);
                     }
                 } catch (InterruptedException ex) {
                     Logger.getLogger(PrimesFinderTool.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }*/
-                        
-            
-            
-            
+                
+                synchronized (punto1) {
+                    punto1.notify();
+                }
+            }     
             
 	}
 	

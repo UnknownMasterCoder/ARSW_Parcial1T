@@ -5,10 +5,13 @@
  */
 package edu.eci.arsw.parallel;
 
+import edu.eci.arsw.mouseutils.MouseMovementMonitor;
 import edu.eci.arsw.primefinder.PrimeFinder;
 import edu.eci.arsw.primefinder.PrimesResultSet;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,13 +22,15 @@ public class PrimeThread extends Thread {
     private final BigInteger A;
     private final BigInteger B;
     private Collection<BigInteger> res;
+    //private PrimesResultSet prs;
 
     public PrimeThread(BigInteger in, BigInteger out) {
         this.A = in;
         this.B = out;
         this.res = null;
+        //prs = new PrimesResultSet("john");
     }
-
+    
     @Override
     public void run() {
         PrimesResultSet prs = new PrimesResultSet("john");
