@@ -1,6 +1,7 @@
 package edu.eci.arsw.primefinder;
 
 import edu.eci.arsw.mouseutils.MouseMovementMonitor;
+import edu.eci.arsw.parallel.ParallelCalculation;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.logging.Level;
@@ -14,17 +15,32 @@ import org.apache.http.impl.client.HttpClientBuilder;
 
 public class PrimesFinderTool {
 
-	public static void main(String[] args) {
-		            
-            int maxPrim=1000;
+	public static void main(String[] args) throws InterruptedException {
+		
+            /*
+            int maxPrim = 1000;
             
-            PrimesResultSet prs=new PrimesResultSet("john");
+            PrimesResultSet prs = new PrimesResultSet("john");
             
             PrimeFinder.findPrimes(new BigInteger("1"), new BigInteger("10000"), prs);
             
             System.out.println("Prime numbers found:");
             
             System.out.println(prs.getPrimes());
+            */
+            
+            
+            System.out.println("Case 1:\n");
+            //ParallelCalculation me calcula todos los numeros primos
+            //Tomando como parametro (el # de primos a calcular y el # de hilos)
+            //En este caso 4 hlos, pero tambien se puede hacer con diferente # de hilos
+            ParallelCalculation T0 = new ParallelCalculation(10000,4);
+            T0.calculate();
+            
+            
+            
+            
+            
             
             
             /*while(task_not_finished){

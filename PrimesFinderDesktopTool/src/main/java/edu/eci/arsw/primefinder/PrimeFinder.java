@@ -7,20 +7,17 @@ import java.util.List;
 
 public class PrimeFinder{
         
-	
-	
-        
 	public static void findPrimes(BigInteger _a, BigInteger _b, PrimesResultSet prs){
             
-                BigInteger a=_a;
-                BigInteger b=_b;
+                BigInteger a = _a;
+                BigInteger b = _b;
 
                 MathUtilities mt=new MathUtilities();
                 
-                int itCount=0;
+                int itCount = 0;
             
-                BigInteger i=a;
-                while (i.compareTo(b)<=0){
+                BigInteger i = a;
+                while (i.compareTo(b) <= 0){
                     itCount++;
                     if (mt.isPrime(i)){
                         prs.addPrime(i);
